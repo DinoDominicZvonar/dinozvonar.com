@@ -147,3 +147,100 @@ h3>a { text-decoration: none; }
 .subtitle {
     color: rgb(186, 186, 186);
 }
+
+.MultiDiv{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+@media (orientation: landscape){
+    .MultiDiv div{
+        width: 49%;
+        overflow: hidden;
+        flex: 0 0 auto;
+    }
+}
+
+@media (orientation: portrait){
+    .MultiDiv div{
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+.MultiDiv div img{
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (orientation: landscape)
+{
+    .FeaturedGames{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-self: flex-start;
+        flex: auto;
+    }
+}
+
+@media (orientation: portrait)
+{
+    .FeaturedGames{
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+        justify-content: space-between;
+        align-self: flex-start;
+        flex: auto;
+    }
+}
+
+.bg-video {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background: no-repeat center;
+    user-select: none;
+    pointer-events: none;
+  
+    filter: brightness(60%);
+
+    height: auto;
+    width: 100%;
+    z-index: -100;
+  }
+
+  @media (orientation: portrait)
+  {
+    .bg-video {
+        height: 100%;
+        width: auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+  }
+
+.landingPageHeader
+{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    top: 0;
+    left: 0;
+    height: 95vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
