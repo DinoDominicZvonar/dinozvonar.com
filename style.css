@@ -19,6 +19,14 @@ body {
 
 @media (orientation: landscape)
 {
+    .mobileNavMenu {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: space-around;
+    }
+
     .main-content{
         max-width: clamp(0px, 90vw ,1500px); 
     }
@@ -26,17 +34,62 @@ body {
     .hamburger{
         display: none;
     }
+
+    .tab{
+        width: 200px;
+    }
 }
 
 @media (orientation: portrait)
 {
-    .stickers
-    {
-        display: none;
+    .mobileNavMenu.closed {
+        max-height: 0;
+        transition: all 200ms;
+    }
+
+    .mobileNavMenu.closed a{
+        opacity: 0;
+        transition: opacity 100ms;
+    }
+
+    .mobileNavMenu {
+        transition: all 200ms;
+        position: fixed;
+        inset: 0;
+        background-color: black;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
+    .mobileNavMenu a{
+        transition: opacity 1000ms;
+        opacity: 100;
+    }
+
+    .tab {
+        margin: 10px 0;
+        text-align: center;
+        width: auto;
+        color: white;
+    }
+
+    .tab a {
+        text-decoration: none;
     }
 
     body{
         font-size: calc(1rem + 2vw);
+    }
+
+    .noScroll {
+        overflow: hidden;
+        margin: 0;
     }
 
     .main-content{
@@ -44,8 +97,12 @@ body {
     }
 
     .hamburger{
-        width: 10vw;
-        height: 10vw;
+        width: 5vw;
+        height: auto;
+    }
+
+    .hamburger:hover{
+        cursor: pointer;
     }
 }
 
@@ -89,6 +146,7 @@ h3>a { text-decoration: none; }
     position: sticky;
     top: 0;
     z-index: 100;
+    background-color: #000000;
 }
 
 .navbar{
@@ -97,11 +155,11 @@ h3>a { text-decoration: none; }
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
     text-align: center;
     align-items: center;
     background-color: #000000;
     width: 100%;
+    z-index: 90;
 }
 
 .tabs{
@@ -117,6 +175,12 @@ h3>a { text-decoration: none; }
 
 @media (orientation: portrait)
 {
+    .navbar {
+        justify-content: space-between;
+        max-width: 90vw;
+        padding-left: 5vw;
+    }
+
     .tabs{
     display: none;
     }
@@ -132,18 +196,17 @@ h3>a { text-decoration: none; }
     
 }
 
-.tab{
-    width: 200px;
+.tab a{
+    color: #ffffff;
 }
 
-.disabled{
+.disabled a{
     color: rgb(57, 57, 57);
 }
 
-.disabled:hover{
+.disabled:hover {
     transform: scale(1.2);
     transition: all 50ms;
-    color: rgb(57, 57, 57);
     cursor: pointer;
 }
 
