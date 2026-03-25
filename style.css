@@ -179,6 +179,20 @@ h3>a { text-decoration: none; }
     object-fit: cover;
 }
 
+@media (orientation: landscape) and (min-width: 1501px)
+{
+    .GamesGrid{
+                grid-template-columns: auto auto auto;
+    }
+}
+
+@media (orientation: landscape) and (max-width: 1500px)
+{
+    .GamesGrid{
+                grid-template-columns: auto auto;
+    }
+}
+
 @media (orientation: landscape)
 {
     .FeaturedGames{

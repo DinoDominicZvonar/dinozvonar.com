@@ -101,7 +101,16 @@
     }
 }
 
+.GameCard:visited,
+.GameCard:hover,
+.GameCard:active,
+.GameCard:link {
+    color: white;
+    text-decoration: none;
+}
+
 .GameCard {
+    color: inherit;
     transition: all 100ms;
     /*display: flex;*/
     /*justify-content: center;*/
@@ -138,7 +147,6 @@
     line-height: 1.5;
     overflow: hidden;
 }
-
 
 /*.GameCard .Title p{
     margin: 0;
