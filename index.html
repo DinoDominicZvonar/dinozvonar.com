@@ -17,25 +17,21 @@
     </head>
 
     <body>
-        <header style="text-align: center;">
+        <div id="nav"></div>
 
-            <div id="nav"></div>
-
-            <script>
-                fetch('../navbar.html')
-                .then(response => response.text())
-                .then(data => {
-                document.getElementById('nav').innerHTML = data;
+        <script>
+            fetch('../navbar.html')
+            .then(response => response.text())
+            .then(data => {
+            document.getElementById('nav').innerHTML = data;
                 
-                const homeTab = document.getElementById("HOME");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }
+            const homeTab = document.getElementById("HOME");
+            if (homeTab) {
+                homeTab.classList.remove("disabled");
+            }
 
-                });
-            </script>
-            
-        </header>
+            });
+        </script>
 
         <div class="landingPageHeader">
                 <video autoplay muted loop playsinline preload="auto" class="bg-video">

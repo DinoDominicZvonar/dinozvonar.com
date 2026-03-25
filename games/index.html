@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 
     <meta charset="utf-8">
-    <meta name="Dino Zvonar">
-    <title>Dino Zvonar</title>
+    <meta name="Dino Zvonar - Games">
+    <meta description="A list of the video games that I've worked on throughout the years">
+    <title>Dino Zvonar - Games</title>
     
     <link rel="icon" type="image/x-icon" href="..\Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/x-icon" href="..\Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
@@ -17,25 +18,21 @@
     </head>
 
     <body>
-        <header style="text-align: center;">
-
             <div id="nav"></div>
-
+            
             <script>
                 fetch('../navbar.html')
-                .then(response => response.text())
-                .then(data => {
-                document.getElementById('nav').innerHTML = data;
-                
-                const homeTab = document.getElementById("GAMES");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('nav').innerHTML = data;
 
-                });
+                        const homeTab = document.getElementById("GAMES");
+                        if (homeTab) {
+                            homeTab.classList.remove("disabled");
+                        }
+
+                    });
             </script>
-            
-        </header>
         
         <div class="main-content">
             <h2>Games</h2>

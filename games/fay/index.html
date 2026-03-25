@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="../GamePage.css" type="text/css">
 
     <meta charset="utf-8">
-    <meta name="Dino Zvonar">
-    <title>Dino Zvonar</title>
-    <style type="text/css">
-    </style>
+    <meta name="Dino Zvonar - Fay">
+    <meta description="“You play as a internet vlogger named Fay, you've gotten an e-mail from a fan about a haunted house. 
+                    You chose to explore it. Can you help Fay escape? Or will she be stuck there forever?"">
+    <title>Dino Zvonar - Fay</title>
+    
+    <link rel="icon" type="image/x-icon" href="..\..\Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" href="..\..\Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
 
     </head>
 
     <body>
-        <header style="text-align: center;">
-
             <div id="nav"></div>
 
             <script>
@@ -26,16 +27,8 @@
                 .then(response => response.text())
                 .then(data => {
                 document.getElementById('nav').innerHTML = data;
-                
-                /*const homeTab = document.getElementById("ABOUT");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }*/
-
                 });
             </script>
-            
-        </header>
         
         <div class="main-content">
             <div style="height: 100px;"></div>

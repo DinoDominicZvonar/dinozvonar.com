@@ -9,16 +9,18 @@
     <link rel="stylesheet" href="../GamePage.css" type="text/css">
 
     <meta charset="utf-8">
-    <meta name="Dino Zvonar">
-    <title>Dino Zvonar</title>
-    <style type="text/css">
-    </style>
+    <meta name="Dino Zvonar - Heronin">
+    <meta description="“Four player chaos. Two player duels. One-hit-kill. 
+                    Shoot, dash, and slash to annihilate your friends(?) in this intense platform fighterFour player chaos. 
+                    Two player duels. One-hit-kill. Shoot, dash, and slash to annihilate your friends(?) in this intense platform fighter”">
+    <title>Dino Zvonar - Heronin</title>
+    
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
 
     </head>
 
     <body>
-        <header style="text-align: center;">
-
             <div id="nav"></div>
 
             <script>
@@ -26,16 +28,8 @@
                 .then(response => response.text())
                 .then(data => {
                 document.getElementById('nav').innerHTML = data;
-                
-                /*const homeTab = document.getElementById("ABOUT");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }*/
-
                 });
             </script>
-            
-        </header>
         
         <div class="main-content">
             <div style="height: 100px;"></div>

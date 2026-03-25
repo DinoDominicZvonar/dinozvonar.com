@@ -16,25 +16,21 @@
     </head>
 
     <body>
-        <header style="text-align: center;">
-
             <div id="nav"></div>
-
+            
             <script>
                 fetch('../navbar.html')
-                .then(response => response.text())
-                .then(data => {
-                document.getElementById('nav').innerHTML = data;
-                
-                const homeTab = document.getElementById("ABOUT");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('nav').innerHTML = data;
 
-                });
+                        const homeTab = document.getElementById("ABOUT");
+                        if (homeTab) {
+                            homeTab.classList.remove("disabled");
+                        }
+
+                    });
             </script>
-            
-        </header>
         
         <div class="main-content">
             <div style="height: 100px;"></div>
