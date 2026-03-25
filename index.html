@@ -62,6 +62,20 @@
                 }, 1000);
                 })();
                 </script>
+
+                <script type="text/javascript">
+                (function () {
+                setInterval(() => {
+                    const video = document.querySelector('.bg-video');
+                    if (video.paused || video.ended)
+                    {
+                        video.play().catch(err => {
+                        console.log('Autoplay failed:', err);
+                        });
+                    }
+                }, 1000);
+                })();
+                </script>
             </div>
         
         <div class="main-content">
