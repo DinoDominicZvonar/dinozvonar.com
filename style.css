@@ -38,10 +38,15 @@ body {
     .tab{
         width: 200px;
     }
+
 }
 
 @media (orientation: portrait)
 {
+    .desktopOnly {
+        display: none;
+    }
+
     .mobileNavMenu.closed {
         max-height: 0;
         transition: all 200ms;
@@ -97,7 +102,7 @@ body {
     }
 
     .hamburger{
-        width: 7vw;
+        width: 1.7rem;
         height: auto;
     }
 
@@ -251,38 +256,37 @@ h3>a { text-decoration: none; }
 
 @media (orientation: landscape) and (min-width: 1501px)
 {
-    .GamesGrid{
+    .FeaturedGames{
                 grid-template-columns: auto auto auto;
     }
 }
 
 @media (orientation: landscape) and (max-width: 1500px)
 {
-    .GamesGrid{
+    .FeaturedGames{
                 grid-template-columns: auto auto;
+                align-content: center;
+                row-gap: 50px;
     }
 }
 
 @media (orientation: landscape)
 {
     .FeaturedGames{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-self: flex-start;
-        flex: auto;
+        display: grid;
+        padding: 10px;
+        align-items: center;
+        justify-items: center;
     }
 }
 
 @media (orientation: portrait)
 {
     .FeaturedGames{
-        display: flex;
-        flex-direction: column;
-        gap: 5vh;
-        justify-content: space-between;
-        align-self: flex-start;
-        flex: auto;
+        display: grid;
+        grid-template-columns: auto;
+        align-content: center;
+        row-gap: 5vh;
     }
 }
 

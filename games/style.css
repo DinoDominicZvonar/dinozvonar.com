@@ -5,6 +5,10 @@
     justify-items: center;
 }
 
+@media (pointer: coarse) {
+    
+}
+
 @media (orientation: portrait)
 {
     .GamesGrid{
