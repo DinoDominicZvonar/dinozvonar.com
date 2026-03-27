@@ -1,0 +1,339 @@
+<html>
+    <head>
+    <script type="text/javascript" src="../../code.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../style.css" type="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta description="This was my specialization project while I was studying at The Game Assembly">
+    <title>Dino Zvonar - Animation State Machine</title>
+    
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
+
+    </head>
+
+    <body>
+<div id="nav"></div>
+
+            <script>
+                fetch('../../navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('nav').innerHTML = data;
+                });
+            </script>
+        
+        <div class="main-content">
+            <div class="desktopOnly" style="height: 100px;"></div>
+        <div class="GameContent">
+            <h1>Animation State Machine & Blendspaces</h1>
+
+                <p>As my specialization at The Game Assembly I decided to develop a Animation State Machine and corresponding editor 
+                    for our game engine editor called Borealis with the main focus being on speeding up the workflow for the animators 
+                    and gameplay programmers in my group.
+                    <br>
+                    <br>
+                    This tool was developed using solely Dear ImGui in a custom C++ game engine.
+                </p>
+
+                <br>
+
+                <h2>Features:</h2>
+
+                <br>
+
+                <h3>Mouse Movement</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/Animation+Graph+Zoom.gif" loading="lazy" decoding="async" alt="Mouse Movement Showcase">
+                    </div>
+                    <div>
+                        <p> 
+                            Since I chose to develop this solely using Dear ImGui and not using some finished graph solution like ImNodes, 
+                            I had to figure out how to draw the nodes and graph myself.
+                        <br>
+                        <br>
+                            In order to draw the graph and nodes I chose to utilize the ImGui DrawList functionallity of Dear ImGui. 
+                            I utilize a 3x3 Matrix in order to save the position and zoom of the viewport camera. The nodes then store 
+                            their own positions as Vector2's, these are then multiplied with the camera matrix before rendering them to 
+                            the screen so that they get rendered on the screen correctly relativley to the camera view.
+                        <br>
+                        <br>
+                            The biggest problem I encountered developing the mouse movement was the fact that the camera always zoomed 
+                            in towards the top left corner no matter where the mouse was placed, I solved this by calculating the 
+                            difference between the mouse position in world space this frame and last frame, I then added the difference 
+                            to the cameras position when zooming so that it zoomed towards the mouse.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/Animation+Graph+Zoom.gif" loading="lazy" decoding="async" alt="Mouse Movement Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Global Variables</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Specialization/State+Machine+Global+Variables.gif" loading="lazy" decoding="async" alt="Global Variables Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            To ensure that the state machine knew if it needed to progress from one state to another I had to implement 
+                            global variables.
+                        <br>
+                        <br>
+                            The variables store an ID, used so that multiple variables of different types can have the same key. 
+                            A variable type to identify if it's an int, float, or bool. A key used by the Links between states to know if 
+                            they need to transition or not. A data index that points to one of multiple lists containing the data used to 
+                            check the conditions of the links, the data in these lists can then be set externally by a gameplay programmer 
+                            using either the id or key of the variable.
+                        <br>
+                        <br>
+                            One of the problems I stumbled upon while making the Global Variables was the fact that they were global, 
+                            meaning that the data they contained was shared across all instances of the same state machine. I solved this 
+                            problem by making the data local to the animator component that held the instance of the state machine and then 
+                            sending that data to the state machine every update.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Linking Nodes</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Link+Showcase.gif" loading="lazy" decoding="async" alt="Node Linking Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The most vital part to making an animation state machine are the links between the nodes. 
+                            I needed to develop a system that accomplished two things, giving the user the ability to link two nodes 
+                            together and enabling the user to set the conditions for when the links should transition to the next node.
+                        <br>
+                        <br>
+                            When linking two nodes the user can compare the value of a global variable using a operator and a value that 
+                            is local to the current link. If the comparison returns true then the state machine can transition to the 
+                            next node.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Link+Showcase.gif" loading="lazy" decoding="async" alt="Node Linking Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Transitions</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Specialization/State+Machine+Blending+Showcase.gif" loading="lazy" decoding="async" alt="Animation Blending Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            When transitioning between two nodes I wanted the animation to blend during a predetermined transition time 
+                            that is set by the user.
+                        <br>
+                        <br>
+                            The blending was implemented by first decomposing animation matrices into position, rotation and scale vectors 
+                            when loading. I then lerp the decomposed animations of the two transitioning animations using a timer that gets 
+                            remapped to go from 0 to 1 depending on the predetermined transition time. The result then gets composed back 
+                            into a list of matrices that then gets sent to the graphics card for rendering.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>2D Blendspaces</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/Blendspace+Showcase.gif" loading="lazy" decoding="async" alt="2D Blendspaces">
+                    </div>
+                    <div>
+                        <p>
+                            Implementing 2D blendspaces had me using triangles in order to figure out what animations that I needed to 
+                            blend between. 
+                        <br>
+                        <br>
+                            I had to lerp the animations between each other,  I accomplished this by calculating the weights of the 
+                            animations in the triangle using their Barycentric coordinates. Once I had their weights I could determine 
+                            which animation was the heaviest and use that as my base, I then blended between the base animation and the 
+                            other two animations based on the weights of the other two animations.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/Blendspace+Showcase.gif" loading="lazy" decoding="async" alt="2D Blendspaces">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Triangulation</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/Triangulation+Showcase.gif" loading="lazy" decoding="async" alt="Triangulation Showacase">
+                    </div>
+                    <div>
+                        <p>
+                            Since I decided to implement 2D blendspaces I had to implement some sort of triangulation.
+                        <br>
+                        <br>
+                            I chose to implement the Bowyer-Watson algorithm which is a type of Delaunay Triangulation in order to 
+                            generate the triangles used for blending in a 2D blendspace.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/Triangulation+Showcase.gif" loading="lazy" decoding="async" alt="Triangulation Showacase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Any State</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Specialization/State+Machine+Any+State+Showcase.gif" loading="lazy" decoding="async" alt="Any State Node Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The any state exists for when you want to go to a specific state regardless of which state you are currently 
+                            located in.
+                        <br>
+                        <br>
+                            This is a nice way to switch from any state e.g. if the player were to die, we would want to immediately 
+                            switch to the death animation no matter where in the state machine we are currently located.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Real Time Preview</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Preview+Showcase.gif" loading="lazy" decoding="async" alt="Real Time Preview Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            I wanted to give the user the ability to preview what animation was playing and which animation link the 
+                            state machine was currently passing through.
+                        <br>
+                        <br>
+                            This was done by adding a progress bar to the animation nodes that filled up based on how far into the 
+                            animation the state machine currently was and then changing the color of the currently transitioning link.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Preview+Showcase.gif" loading="lazy" decoding="async" alt="Real Time Preview Showacase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Drag And Drop</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Specialization/State+Machine+Drag+Drop+Showcase.gif" loading="lazy" decoding="async" alt="Drag And Drop Showacase">
+                    </div>
+                    <div>
+                        <p>
+                            I needed to a way to let the user easily and intuitively add animations into the state machine.
+                            <br>
+                            <br>
+                            This was relatively easy to implement since we already had the functionally of dragging and dropping files 
+                            from the asset browser, all I had to do was to check if the dropped file was an animation and then create a 
+                            new node at the same position as the mouse and then set that node as the currently selected node.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Undo And Redo</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Undo+&+Redo+Showcase.gif" loading="lazy" decoding="async" alt="Undo And Redo Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            A core feature to any tool is giving the ability to undo and redo their changes.
+                            <br>
+                            <br>
+                            I implemented this using a command design pattern.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Specialization/State+Machine+Undo+&+Redo+Showcase.gif" loading="lazy" decoding="async" alt="Undo And Redo Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Renaming Nodes</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Specialization/State+Machine+Rename+Showcase.gif" loading="lazy" decoding="async" alt="Node Renaming">
+                    </div>
+                    <div>
+                        <p>
+                            This was added as a neat little feature since I know from experience that animation names can get long, 
+                            bulky and just plain hard to read.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Conclusion</h3>
+
+                <p>
+                    When looking back I think I accomplished what I first set out to do. I wanted to rework our current animation system 
+                    into a animation state machine to speed up our workflow and give more control to our animators.
+                <br>
+                <br>
+                    There are two features that I wish to implement in the future, animation layers and exit times for states, 
+                    but otherwise I'm quite satisfied with what I managed to develop and I am quite excited to integrate this new 
+                    animation system into our next game project, I cannot wait to see what our animators and gameplay programmers can 
+                    accomplish with my system.
+                </p>
+
+        </div>
+
+        <br>
+        <br>
+
+        <div id="foot"></div>
+
+        <script>
+                fetch('../../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('foot').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    </body>
+
+
+    
+</html>

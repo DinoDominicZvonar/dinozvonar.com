@@ -39,6 +39,10 @@ body {
         width: 200px;
     }
 
+    .mobileOnly {
+        display: none;
+    }
+
 }
 
 @media (orientation: portrait)
@@ -199,6 +203,19 @@ h3>a { text-decoration: none; }
     flex: auto;
     }
     
+    .MultiDiv .ProjectCard img {
+        filter: brightness(70%);
+        height: 100%;
+    }
+
+    .ProjectCard {
+        height: 80vw;
+    }
+
+    .MultiDiv.Projects {
+        row-gap: 5vh;
+    }
+
 }
 
 .tab a{
@@ -234,10 +251,28 @@ h3>a { text-decoration: none; }
 }
 
 @media (orientation: landscape){
+    .MultiDiv.Projects {
+        padding: 50px;
+    }
+
     .MultiDiv div{
         width: 49%;
         overflow: hidden;
         flex: 0 0 auto;
+    }
+
+    .MultiDiv .ProjectCard{
+        width: 48%;
+        overflow: hidden;
+        flex: 0 0 auto;
+    }
+
+    .ProjectCard img {
+        filter: brightness(50%);
+    }
+
+    .ProjectCard:hover img {
+        filter: brightness(100%);
     }
 }
 
@@ -248,7 +283,7 @@ h3>a { text-decoration: none; }
     }
 }
 
-.MultiDiv div img{
+.MultiDiv img{
     height: auto;
     width: 100%;
     object-fit: cover;
@@ -278,6 +313,12 @@ h3>a { text-decoration: none; }
         align-items: center;
         justify-items: center;
     }
+
+    .ProjectCard:hover {
+        transform: scale(1.1);
+        transition: all 100ms;
+        cursor: pointer;
+    }
 }
 
 @media (orientation: portrait)
@@ -302,7 +343,7 @@ h3>a { text-decoration: none; }
     user-select: none;
     pointer-events: none;
   
-    filter: brightness(60%);
+    filter: brightness(80%);
 
     min-height: 100%;
     height: auto;
@@ -320,6 +361,8 @@ h3>a { text-decoration: none; }
         top: 0;
         transform: translate(-50%, 0);
     }
+
+
   }
 
 .landingPageHeader
@@ -335,4 +378,30 @@ h3>a { text-decoration: none; }
     align-items: center;
     text-align: center;
     flex-direction: column;
+}
+
+.ProjectCard {
+    transition: all 100ms;
+    position: relative;
+    border-radius: 10px;
+}
+
+.ProjectCard .Title{
+    transition: all 100ms;
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-align: center;
+}
+
+a.ProjectCard {
+    color: white !important;
+    text-decoration: none !important;
 }

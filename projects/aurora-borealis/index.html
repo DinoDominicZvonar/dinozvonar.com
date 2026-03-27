@@ -1,0 +1,275 @@
+<html>
+    <head>
+    <script type="text/javascript" src="../../code.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../style.css" type="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta name="description" content="Aurora Borealis was a custom game engine that I developed together with my group at The Game Assembly">
+    <title>Dino Zvonar - Aurora Borealis</title>
+    
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
+
+    </head>
+
+    <body>
+<div id="nav"></div>
+
+            <script>
+                fetch('../../navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('nav').innerHTML = data;
+                });
+            </script>
+        
+        <div class="main-content">
+            <div class="desktopOnly" style="height: 100px;"></div>
+        <div class="GameContent">
+            <h1>Aurora Borealis</h1>
+
+                <p>
+                    During our fifth game project at The Game Assembly we got tasked with developing a game engine from scratch, 
+                    we decided to call this engine Aurora. This later evolved into a fully fledged game engine and editor during our 
+                    sixth and seventh game projects. This lead to me becoming the main tools programmer, with me developing most of the 
+                    systems available in our game engine editor called Borealis.
+                    <br>
+                    <br>
+                    Below you can read about some of the systems that I developed for Aurora and Borealis.
+                </p>
+
+                <br>
+
+                <h2>My Contributions:</h2>
+
+                <br>
+
+                <h3>Object Picking</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Picking+Showcase.gif" loading="lazy" decoding="async" alt="Object Picking Showcase">
+                    </div>
+                    <div>
+                        <p> 
+                            I implemented Object Picking together with Isak Morand-Holmqvist so that we could easily click on GameObjects 
+                            in the viewport of the editor and select them.
+                        <br>
+                        <br>
+                            The object picking took some time to figure out since our objects used UUID’s that were 64 bits large as their 
+                            ID, this meant that the ID was too big to send to a graphics buffer. We solved this issue by instead sending 
+                            the current object's index in the currently loaded scene, we then render the index to a texture as a color and 
+                            choose a pixel to read from that texture based on where the user is clicking, we can then use the color of the 
+                            pixel that we read from to get the index of the object the user clicked on.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Picking+Showcase.gif" loading="lazy" decoding="async" alt="Object Picking Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Gizmo Manipulation</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Aurora Borealis/ImGuizmo+Showcase.gif" loading="lazy" decoding="async" alt="Imguizmo showcase">
+                    </div>
+                    <div>
+                        <p>
+                            To let my level designers manipulate the levels they are making in our engine I had to implement some sort of 
+                            object manipulation. I chose to use the ImGuizmo library since it allowed for the customizability that I was 
+                            looking for, I also chose it since it was already compatible with the Dear ImGUI library that we already were 
+                            using for the editor which made it relatively easy to implement.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Multi Select</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Multi+Select+Showcase.gif" loading="lazy" decoding="async" alt="Multi Select Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            I added muti select as being able to select only one object at a time became pretty tiresome after a while. 
+                            This had me composing the positions, rotations and scales of all the selected objects into a single matrix 
+                            that represented the median values of all the selected objects. I could then manipulate the new matrix and 
+                            multiply it with the matrices of the individual objects to get their new positions, rotations and scales.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Multi+Select+Showcase.gif" loading="lazy" decoding="async" alt="Multi Select Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Undo And Redo</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Aurora Borealis/Undo+Redo+Showcase.gif" loading="lazy" decoding="async" alt="Undo And Redo Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            Being able to manipulate all the objects is nice and all but what if you make a mistake? This is where undo and redo comes in.
+                        <br>
+                        <br>
+                            I used a command design pattern in order to implement our undo and redo system with me sending out commands 
+                            every time someone changes the position, rotation or scale of an object.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Material Editor</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Material+Editor+Showcase.gif" loading="lazy" decoding="async" alt="Material Editor Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            This was added during our seventh project. During our sixth project we had material editing inside of the mesh 
+                            renderer component displayed in the inspector, this worked fine but became cluttered and we needed to add support 
+                            for multiple materials.
+                        <br>
+                        <br>
+                            This is where the material editor window comes in, it allows to preview materials and change their parameters 
+                            like roughness, normal strength, uv-tiling etc.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Material+Editor+Showcase.gif" loading="lazy" decoding="async" alt="Material Editor Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Inspector</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Inspector+Showcase.gif" loading="lazy" decoding="async" alt="Inspector Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The inspector is probably one of our most useful tools. It allows us as developers to manipulate and easily 
+                            test the values of the GameObjects. 
+                        <br>
+                        <br>
+                            It gives us the ability to e.g. change the names of our objects, add 3D meshes and animations, add and 
+                            manipulate lights, change cameras etc.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Inspector+Showcase.gif" loading="lazy" decoding="async" alt="Inspector Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Hierarchy And Parenting</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Aurora Borealis/Hiearchy+Showcase.gif" loading="lazy" decoding="async" alt="Hiearchy Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The hierarchy allows us developers to have a overview over the GameObjects in current scene that we’re working on. 
+                        <br>
+                        <br>
+                            It allows us to search for objects, select them and even parent them to others. This is useful if you’re trying 
+                            to find a specific object or if you e.g. need a light to follow a mesh that is supposed to move.
+                        <br>
+                        <br>
+                            The parenting and childing system was implemented by translating the transform of the child component into 
+                            the parent’s local space by multiplying it by the parent’s inverse matrix, I then get the world transform of 
+                            the child objects by multiplying the object’s matrix with the world matrix of the parent before rendering.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Asset Browser</h3>
+
+                <div class="MultiDiv">
+                    <div class="mobileOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Asset+Browser+Showcase.gif" loading="lazy" decoding="async" alt="Asset Browser Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The asset browser gives us developers a overview of the entire game project and all of it’s internal files.
+                        <br>
+                        <br>
+                            Our asset browser allows us to search for files, open folders, create new files and drag and drop files from 
+                            the asset browser into the inspector, material editor and animation state machine.
+                        </p>
+                    </div>
+                    <div class="desktopOnly">
+                        <img src="../../Resources/Images/Aurora Borealis/Asset+Browser+Showcase.gif" loading="lazy" decoding="async" alt="Asset Browser Showcase">
+                    </div>
+                </div>
+
+                <br>
+
+                <h3>Asset Manager</h3>
+
+                <div class="MultiDiv">
+                    <div>
+                        <img src="../../Resources/Images/Aurora Borealis/Aurhandle.webp" loading="lazy" decoding="async" alt="Aurhandle Showcase">
+                    </div>
+                    <div>
+                        <p>
+                            The asset manager is used throughout the engine to keep track of all the assets we use throughout our games. 
+                            The current asset manager was written during our sixth game project, I collaborated with Isak Morand-Holmqvist 
+                            to structure up the entire system and before I got to coding it.
+                            <br>
+                            <br>
+                            The asset manager works by saving everything from textures and materials to animations and meshes as aurora 
+                            asset handles, these handles keep track of the UUID, asset path and asset type.
+                            <br>
+                            <br>
+                            When I first wrote the asset manager I saved all the handles in one big bank file, this ended up being quite a 
+                            hassle to deal with as we had to merge the bank file every time added any new asset to the game. 
+                            I have now changed the system so that we instead save each asset handle as a .aurhandle file 
+                            (as seen in the picture).
+                        </p>
+                    </div>
+                </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div id="foot"></div>
+
+        <script>
+                fetch('../../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('foot').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    </body>
+
+
+    
+</html>
