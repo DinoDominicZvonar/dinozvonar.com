@@ -1,10 +1,10 @@
 <html>
     <head>
-    <script type="text/javascript" src="code.js" defer></script>
+    <script type="text/javascript" src="https://dinozvonar.com/code.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://dinozvonar.com/style.css" type="text/css">
 
     <meta charset="utf-8">
     <meta name="Dino Zvonar">
@@ -20,16 +20,10 @@
             <div id="nav"></div>
 
             <script>
-                fetch('../navbar.html')
+                fetch('https://dinozvonar.com/navbar.html')
                 .then(response => response.text())
                 .then(data => {
                 document.getElementById('nav').innerHTML = data;
-                
-                const homeTab = document.getElementById("GAMES");
-                if (homeTab) {
-                    homeTab.classList.remove("disabled");
-                }
-
                 });
             </script>
             
@@ -44,7 +38,7 @@
         <div id="foot"></div>
 
         <script>
-                fetch('footer.html')
+                fetch('https://dinozvonar.com/footer.html')
                 .then(response => response.text())
                 .then(data => {
                 document.getElementById('foot').innerHTML = data;
