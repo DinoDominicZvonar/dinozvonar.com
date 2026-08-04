@@ -1,0 +1,72 @@
+<html lang="en">
+    <head>
+    <script type="text/javascript" src="../../code.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../style.css" type="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+    <link rel="stylesheet" href="../GamePage.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta name="Dino Zvonar - Battlefield 6">
+    <meta description="“The ultimate all-out warfare experience. In a war of tanks, fighter jets, and massive combat arsenals, your squad is the deadliest weapon.”">
+    <title>Dino Zvonar - Battlefield 6</title>
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Light Favicon.png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/x-icon" href="../../Resources/Images/Favicons/Dark Favicon.png" media="(prefers-color-scheme: light)">
+
+    </head>
+
+    <body>
+            <div id="nav"></div>
+
+            <script>
+                fetch('../../navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('nav').innerHTML = data;
+                });
+            </script>
+        
+        <div class="main-content">
+            <div class="desktopOnly" style="height: 100px;"></div>
+        <div class="GameContent">
+            <h1>Battlefield 6</h1>
+                <p>
+                    “The ultimate all-out warfare experience. In a war of tanks, fighter jets, and massive combat arsenals, your squad is the deadliest weapon.”
+                </p>
+
+                <div class="Trailer">
+                <iframe class="responsive-iframe" src="https://www.youtube.com/embed/wFGEMfyAQtI?si=y7DpB97xb2MO7pe2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <p> Battlefield 6 was the first commercial project that I've ever worked on. I joined DICE as a Software Engineer Intern on the Core Systems Team.
+                    As an intern my work consisted of fixing bugs and crashes in the "Core Systems" of the game i.e most of the backend engine-related systems.
+                    <br>
+                    <br>
+                    After my 7 month internship I got the opportunity to stay at DICE for 5 more months, this time as a part of the Keep Green team. 
+                    We were tasked with monitoring the overall game stabillity and making sure that the end product was as stable as possible. 
+                    My tasks consisted of verifying the stability of the game, looking at crashdumps, recreating crashes, temporarily patching game 
+                    breaking issues and informing the correct teams about bugs and crashes related to their systems.
+                </p>
+                
+        <div id="foot"></div>
+
+        <script>
+                fetch('../../footer.html')
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById('foot').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    </body>
+
+
+    
+</html>
