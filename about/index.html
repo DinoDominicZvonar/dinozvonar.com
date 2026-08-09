@@ -32,12 +32,44 @@
 
                     });
             </script>
-        
+
         <div class="main-content">
             <div class="desktopOnly" style="height: 100px;"></div>
             <div style="display: flex;   justify-content: center; align-items: center; width: 100%;">
-                <img src="../Resources/Images/selfie.webp" loading="lazy" decoding="async" style="width: 20vw; min-width: 250px; max-width: 300px; height: auto;" alt="Board Games">
-            </div>
+                <!--<img src="../Resources/Images/selfie.webp" loading="lazy" decoding="async" style="width: 20vw; min-width: 250px; max-width: 300px; height: auto;" alt="Board Games">-->
+                
+                <div class="Cutout-Circle">
+                <img src="../Resources/Images/Selfie.webp" id="hover-move-image" loading="lazy" decoding="async" style="width: 20vw; min-width: 250px; max-width: 325px; height: auto;" alt="Board Games">
+                </div>
+        </div>
+
+        <script>
+                const container = document.querySelector('.Cutout-Circle');
+                const image = document.getElementById('hover-move-image');
+
+                container.addEventListener('mousemove', (e) => {
+
+                    const rect = container.getBoundingClientRect();
+
+                    const mouseXFromCenter = e.clientX - rect.left - (rect.width/2);
+                    const mouseYFromCenter = e.clientY - rect.top - (rect.height/2);
+
+                    const moveX = mouseXFromCenter / 20;
+                    const moveY = mouseYFromCenter / 20;
+
+                    image.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    image.style.transition = `0ms`;
+
+                });
+
+                 container.addEventListener('mouseleave', (e) => {
+
+                    image.style.transform = `translate(0px, 0px)`;
+                    image.style.transition = `300ms`;
+
+                });
+
+            </script>
             
         <div class="MultiDiv">
             

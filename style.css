@@ -405,3 +405,12 @@ a.ProjectCard {
     color: white !important;
     text-decoration: none !important;
 }
+
+.Cutout-Circle {
+    clip-path: circle(40% at 50% 55%);
+    transition: all 500ms;
+}
+
+.Cutout-Circle:hover {
+    transform: scale(1.1);
+}
