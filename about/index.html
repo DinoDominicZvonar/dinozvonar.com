@@ -75,7 +75,7 @@
             
         </div>
         <div>
-                <p>Hi! I'm Dino, a 22 year old Software Engineer / Game Programmer.
+                <p>Hi! I'm Dino, a <span id="age">0</span> year old Software Engineer / Game Programmer.
                 I'm currently working at <a href="https://www.handelsbanken.se/">Handelsbanken</a> 
                 as a COBOL Developer as a part of the Cross Border Payments team, I've previously 
                 worked at <a href="https://www.dice.se">DICE</a> where I worked on
@@ -113,7 +113,22 @@
 
         <p>My current board game collection :)</p>
 
+        <script>
+                const age = document.getElementById('age');
+                
+                const birthday = new Date(2003, 11, 3); //Date is 1 indexed for some reason
+                const today = new Date();
 
+                let years = today.getFullYear() - birthday.getFullYear();
+                let months = today.getMonth() - birthday.getMonth();
+
+                if (months < 0 || (months === 0 && today.getDate() < birthday.getDate()))
+                {
+                    years -= 1;
+                }
+
+                age.innerText = years;
+        </script>
 
 
         <div id="foot"></div>
